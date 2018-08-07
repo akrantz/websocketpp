@@ -249,7 +249,7 @@ public:
     }
 
     /// Process new websocket connection bytes
-    size_t consume(uint8_t * buf, size_t len, lib::error_code & ec) {
+    size_t consume(_Out_cap_(len) uint8_t * buf, size_t len, lib::error_code & ec) {
         // if in state header we are expecting a 0x00 byte, if we don't get one
         // it is a fatal error
         size_t p = 0; // bytes processed

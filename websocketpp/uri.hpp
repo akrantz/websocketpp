@@ -204,7 +204,7 @@ public:
       , m_secure(scheme == "wss" || scheme == "https")
       , m_valid(true) {}
 
-    uri(std::string scheme, std::string const & host, std::string const & resource)
+    uri(std::string const & scheme, std::string const & host, std::string const & resource)
       : m_scheme(scheme)
       , m_host(host)
       , m_resource(resource.empty() ? "/" : resource)

@@ -164,7 +164,7 @@ typedef lib::function<void(lib::error_code const & ec)> write_frame_handler;
     static std::vector<int> const versions_supported = {0,7,8,13};
 #else
     /// Helper array to get around lack of initializer lists pre C++11
-    static int const helper[] = {0,7,8,13};
+    static int constexpr helper[] = {0,7,8,13};
     /// Container that stores the list of protocol versions supported
     /**
      * @todo Move this to configs to allow compile/runtime disabling or enabling
@@ -348,7 +348,7 @@ public:
      *
      * @param h The new open_handler
      */
-    void set_open_handler(open_handler h) {
+    void set_open_handler(const open_handler& h) {
         m_open_handler = h;
     }
 
@@ -358,7 +358,7 @@ public:
      *
      * @param h The new close_handler
      */
-    void set_close_handler(close_handler h) {
+    void set_close_handler(const close_handler& h) {
         m_close_handler = h;
     }
 
@@ -369,7 +369,7 @@ public:
      *
      * @param h The new fail_handler
      */
-    void set_fail_handler(fail_handler h) {
+    void set_fail_handler(const fail_handler& h) {
         m_fail_handler = h;
     }
 
@@ -384,7 +384,7 @@ public:
      *
      * @param h The new ping_handler
      */
-    void set_ping_handler(ping_handler h) {
+    void set_ping_handler(const ping_handler& h) {
         m_ping_handler = h;
     }
 
@@ -395,7 +395,7 @@ public:
      *
      * @param h The new pong_handler
      */
-    void set_pong_handler(pong_handler h) {
+    void set_pong_handler(const pong_handler& h) {
         m_pong_handler = h;
     }
 
@@ -418,7 +418,7 @@ public:
      *
      * @param h The new pong_timeout_handler
      */
-    void set_pong_timeout_handler(pong_timeout_handler h) {
+    void set_pong_timeout_handler(const pong_timeout_handler& h) {
         m_pong_timeout_handler = h;
     }
 
@@ -429,7 +429,7 @@ public:
      *
      * @param h The new interrupt_handler
      */
-    void set_interrupt_handler(interrupt_handler h) {
+    void set_interrupt_handler(const interrupt_handler& h) {
         m_interrupt_handler = h;
     }
 
@@ -444,7 +444,7 @@ public:
      *
      * @param h The new http_handler
      */
-    void set_http_handler(http_handler h) {
+    void set_http_handler(const http_handler& h) {
         m_http_handler = h;
     }
 
@@ -460,7 +460,7 @@ public:
      *
      * @param h The new validate_handler
      */
-    void set_validate_handler(validate_handler h) {
+    void set_validate_handler(const validate_handler& h) {
         m_validate_handler = h;
     }
 
@@ -470,7 +470,7 @@ public:
      *
      * @param h The new message_handler
      */
-    void set_message_handler(message_handler h) {
+    void set_message_handler(const message_handler& h) {
         m_message_handler = h;
     }
 

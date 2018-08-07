@@ -274,52 +274,52 @@ public:
     /* Set Handler functions */
     /*************************/
 
-    void set_open_handler(open_handler h) {
+    void set_open_handler(const open_handler& h) {
         m_alog.write(log::alevel::devel,"set_open_handler");
         scoped_lock_type guard(m_mutex);
         m_open_handler = h;
     }
-    void set_close_handler(close_handler h) {
+    void set_close_handler(const close_handler& h) {
         m_alog.write(log::alevel::devel,"set_close_handler");
         scoped_lock_type guard(m_mutex);
         m_close_handler = h;
     }
-    void set_fail_handler(fail_handler h) {
+    void set_fail_handler(const fail_handler& h) {
         m_alog.write(log::alevel::devel,"set_fail_handler");
         scoped_lock_type guard(m_mutex);
         m_fail_handler = h;
     }
-    void set_ping_handler(ping_handler h) {
+    void set_ping_handler(const ping_handler& h) {
         m_alog.write(log::alevel::devel,"set_ping_handler");
         scoped_lock_type guard(m_mutex);
         m_ping_handler = h;
     }
-    void set_pong_handler(pong_handler h) {
+    void set_pong_handler(const pong_handler& h) {
         m_alog.write(log::alevel::devel,"set_pong_handler");
         scoped_lock_type guard(m_mutex);
         m_pong_handler = h;
     }
-    void set_pong_timeout_handler(pong_timeout_handler h) {
+    void set_pong_timeout_handler(const pong_timeout_handler& h) {
         m_alog.write(log::alevel::devel,"set_pong_timeout_handler");
         scoped_lock_type guard(m_mutex);
         m_pong_timeout_handler = h;
     }
-    void set_interrupt_handler(interrupt_handler h) {
+    void set_interrupt_handler(const interrupt_handler& h) {
         m_alog.write(log::alevel::devel,"set_interrupt_handler");
         scoped_lock_type guard(m_mutex);
         m_interrupt_handler = h;
     }
-    void set_http_handler(http_handler h) {
+    void set_http_handler(const http_handler& h) {
         m_alog.write(log::alevel::devel,"set_http_handler");
         scoped_lock_type guard(m_mutex);
         m_http_handler = h;
     }
-    void set_validate_handler(validate_handler h) {
+    void set_validate_handler(const validate_handler& h) {
         m_alog.write(log::alevel::devel,"set_validate_handler");
         scoped_lock_type guard(m_mutex);
         m_validate_handler = h;
     }
-    void set_message_handler(message_handler h) {
+    void set_message_handler(const message_handler& h) {
         m_alog.write(log::alevel::devel,"set_message_handler");
         scoped_lock_type guard(m_mutex);
         m_message_handler = h;
