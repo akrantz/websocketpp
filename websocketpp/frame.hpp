@@ -305,13 +305,13 @@ void byte_mask(input_iter b, input_iter e, output_iter o, masking_key_type
 template <typename iter_type>
 void byte_mask(iter_type b, iter_type e, masking_key_type const & key,
     size_t key_offset = 0);
-void word_mask_exact(uint8_t * input, uint8_t * output, size_t length,
+void word_mask_exact(_In_ const uint8_t * input, _Out_cap_(length) uint8_t * output, size_t length,
     masking_key_type const & key);
-void word_mask_exact(uint8_t * data, size_t length, masking_key_type const &
+void word_mask_exact(_In_ const uint8_t * data, size_t length, masking_key_type const &
     key);
-size_t word_mask_circ(uint8_t * input, uint8_t * output, size_t length,
+size_t word_mask_circ(_In_ const uint8_t * input, _Out_cap_(length) uint8_t * output, size_t length,
     size_t prepared_key);
-size_t word_mask_circ(uint8_t * data, size_t length, size_t prepared_key);
+size_t word_mask_circ(_Out_cap_(length) uint8_t * data, size_t length, size_t prepared_key);
 
 /// Check whether the frame's FIN bit is set.
 /**
@@ -696,12 +696,12 @@ void byte_mask(iter_type b, iter_type e, masking_key_type const & key,
  *
  * @param key Masking key to use
  */
-inline void word_mask_exact(uint8_t* input, uint8_t* output, size_t length,
+inline void word_mask_exact(_In_count_(length) uint8_t* input, _Out_cap_(length) uint8_t* output, size_t length,
     const masking_key_type& key)
 {
     size_t prepared_key = prepare_masking_key(key);
     size_t n = length/sizeof(size_t);
-    size_t* input_word = reinterpret_cast<size_t*>(input);
+    size_t* const input_word = reinterpret_cast<size_t*>(input);
     size_t* output_word = reinterpret_cast<size_t*>(output);
 
     for (size_t i = 0; i < n; i++) {
@@ -762,12 +762,12 @@ inline void word_mask_exact(uint8_t* data, size_t length, const
  *
  * @return the prepared_key shifted to account for the input length
  */
-inline size_t word_mask_circ(uint8_t * input, uint8_t * output, size_t length,
+inline size_t word_mask_circ(_In_count_(length) uint8_t * input, _Out_cap_(length) uint8_t * output, size_t length,
     size_t prepared_key)
 {
     size_t n = length / sizeof(size_t); // whole words
     size_t l = length - (n * sizeof(size_t)); // remaining bytes
-    size_t * input_word = reinterpret_cast<size_t *>(input);
+    size_t * const input_word = reinterpret_cast<size_t *>(input);
     size_t * output_word = reinterpret_cast<size_t *>(output);
 
     // mask word by word
@@ -777,7 +777,7 @@ inline size_t word_mask_circ(uint8_t * input, uint8_t * output, size_t length,
 
     // mask partial word at the end
     size_t start = length - l;
-    uint8_t * byte_key = reinterpret_cast<uint8_t *>(&prepared_key);
+    uint8_t * const byte_key = reinterpret_cast<uint8_t *>(&prepared_key);
     for (size_t i = 0; i < l; ++i) {
         output[start+i] = input[start+i] ^ byte_key[i];
     }
@@ -824,7 +824,7 @@ inline size_t word_mask_circ(uint8_t* data, size_t length, size_t prepared_key){
  *
  * @return the prepared_key shifted to account for the input length
  */
-inline size_t byte_mask_circ(uint8_t * input, uint8_t * output, size_t length,
+inline size_t byte_mask_circ(uint8_t * const input, _Out_cap_(length) uint8_t * output, size_t length,
     size_t prepared_key)
 {
     uint32_converter key;
@@ -851,7 +851,7 @@ inline size_t byte_mask_circ(uint8_t * input, uint8_t * output, size_t length,
  *
  * @return the prepared_key shifted to account for the input length
  */
-inline size_t byte_mask_circ(uint8_t* data, size_t length, size_t prepared_key){
+inline size_t byte_mask_circ(_Inout_count_(length) uint8_t * data, size_t length, size_t prepared_key){
     return byte_mask_circ(data,data,length,prepared_key);
 }
 

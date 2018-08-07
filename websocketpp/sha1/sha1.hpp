@@ -48,7 +48,7 @@ inline unsigned int rol(unsigned int value, unsigned int steps) {
 
 // Sets the first 16 integers in the buffert to zero.
 // Used for clearing the W buffert.
-inline void clearWBuffert(unsigned int * buffert)
+inline void clearWBuffert(_Out_cap_c_(16) unsigned int * buffert)
 {
     for (int pos = 16; --pos >= 0;)
     {
@@ -56,7 +56,7 @@ inline void clearWBuffert(unsigned int * buffert)
     }
 }
 
-inline void innerHash(unsigned int * result, unsigned int * w)
+inline void innerHash(_Out_cap_c_(20) unsigned int * result, _Out_cap_c_(80) unsigned int * w)
 {
     unsigned int a = result[0];
     unsigned int b = result[1];
@@ -124,7 +124,7 @@ inline void innerHash(unsigned int * result, unsigned int * w)
  * @param hash should point to a buffer of at least 20 bytes of size for storing
  * the sha1 result in.
  */
-inline void calc(void const * src, size_t bytelength, unsigned char * hash) {
+inline void calc(_Out_cap_(bytelength) void const * src, size_t bytelength, unsigned char * hash) {
     // Init the result array.
     unsigned int result[5] = { 0x67452301, 0xefcdab89, 0x98badcfe,
                                0x10325476, 0xc3d2e1f0 };
