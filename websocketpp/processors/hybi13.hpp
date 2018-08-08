@@ -357,7 +357,7 @@ public:
      *
      * @return Number of bytes processed or zero on error
      */
-    size_t consume(uint8_t * buf, size_t len, lib::error_code & ec) {
+    size_t consume(_In_count_(len) uint8_t * buf, size_t len, lib::error_code & ec) {
         size_t p = 0;
 
         ec = lib::error_code();

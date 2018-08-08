@@ -725,7 +725,7 @@ inline void word_mask_exact(_In_count_(length) uint8_t* input, _Out_cap_(length)
  *
  * @param key Masking key to use
  */
-inline void word_mask_exact(uint8_t* data, size_t length, const
+inline void word_mask_exact(_Inout_cap_(length) uint8_t* data, size_t length, const
     masking_key_type& key)
 {
     word_mask_exact(data,data,length,key);

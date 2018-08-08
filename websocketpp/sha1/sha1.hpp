@@ -124,7 +124,7 @@ inline void innerHash(_Out_cap_c_(20) unsigned int * result, _Out_cap_c_(80) uns
  * @param hash should point to a buffer of at least 20 bytes of size for storing
  * the sha1 result in.
  */
-inline void calc(_Out_cap_(bytelength) void const * src, size_t bytelength, unsigned char * hash) {
+inline void calc(_In_count_(bytelength) void const * src, size_t bytelength, _Out_cap_c_(20) unsigned char * hash) {
     // Init the result array.
     unsigned int result[5] = { 0x67452301, 0xefcdab89, 0x98badcfe,
                                0x10325476, 0xc3d2e1f0 };

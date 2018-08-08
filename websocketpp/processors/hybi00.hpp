@@ -414,7 +414,7 @@ public:
         return lib::error_code();
     }
 private:
-    void decode_client_key(std::string const & key, char * result) const {
+    void decode_client_key(std::string const & key, _Out_cap_x_(key.size()) char * result) const {
         unsigned int spaces = 0;
         std::string digits;
         uint32_t num;
